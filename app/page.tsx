@@ -8,6 +8,7 @@ import { AlertCircle, CheckCircle, ShieldAlert, Info, Sparkles } from "lucide-re
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
+import { HighlightedText } from "@/components/highlighted-text"
 
 // 분석 키워드 데이터베이스
 const sensationalKeywords = [
@@ -33,7 +34,19 @@ const exaggerationKeywords = [
   "엄청난",
   "대박",
   "초대형",
+  "전면 금지",
 ]
+
+const emotionalKeywords = ["분노", "공포", "충격", "믿을 수 없는", "경악", "놀라운"]
+
+const sourcelessKeywords = [
+  "전문가에 따르면",
+  "연구 결과에 의하면",
+  "보도에 따르면",
+  "소식통에 의하면",
+  "알려진 바에 따르면",
+]
+
 const trustKeywords = ["연구", "보고서", "통계", "전문가", "교수", "박사", "발표", "조사", "자료", "출처"]
 
 interface AnalysisResult {
@@ -43,6 +56,11 @@ interface AnalysisResult {
     sensational: string[]
     exaggeration: string[]
     trust: string[]
+  }
+  highlights: {
+    exaggeration: string[]
+    sourceless: string[]
+    emotional: string[]
   }
   riskCount: number
   message: string
@@ -71,6 +89,20 @@ export default function FakeNewsDetector() {
       const detectedSensational = sensationalKeywords.filter((keyword) => inputText.includes(keyword))
       const detectedExaggeration = exaggerationKeywords.filter((keyword) => inputText.includes(keyword))
       const detectedTrust = trustKeywords.filter((keyword) => inputText.includes(keyword))
+
+      const detectedEmotional = emotionalKeywords.filter((keyword) => inputText.includes(keyword))
+      const detectedSourceless = sourcelessKeywords.filter((keyword) => inputText.includes(keyword))
+      const detectedExaggerationForHighlight = [
+        ...new Set(
+          [
+            ...exaggerationKeywords.filter((keyword) => inputText.includes(keyword)),
+            "무조건",
+            "100%",
+            "전면 금지",
+            "충격적인 진실",
+          ].filter((keyword) => inputText.includes(keyword)),
+        ),
+      ]
 
       // 위험 단어 개수
       const riskCount = detectedSensational.length + detectedExaggeration.length
@@ -114,6 +146,11 @@ export default function FakeNewsDetector() {
           sensational: detectedSensational,
           exaggeration: detectedExaggeration,
           trust: detectedTrust,
+        },
+        highlights: {
+          exaggeration: detectedExaggerationForHighlight,
+          sourceless: detectedSourceless,
+          emotional: detectedEmotional,
         },
         riskCount,
         message,
@@ -260,6 +297,37 @@ export default function FakeNewsDetector() {
           <div className="space-y-6">
             {result ? (
               <>
+                <Card className="p-6">
+                  <div className="space-y-4">
+                    <h2 className="text-lg font-semibold text-foreground">의심 요소 하이라이트</h2>
+
+                    {/* Color legend */}
+                    <div className="flex flex-wrap gap-3 text-sm pb-3 border-b border-border">
+                      <div className="flex items-center gap-2">
+                        <div className="h-3 w-3 rounded bg-red-200 dark:bg-red-900/40 border border-red-300 dark:border-red-800" />
+                        <span className="text-muted-foreground">과장 표현</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-3 w-3 rounded bg-orange-200 dark:bg-orange-900/40 border border-orange-300 dark:border-orange-800" />
+                        <span className="text-muted-foreground">출처 불명</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-3 w-3 rounded bg-yellow-200 dark:bg-yellow-900/40 border border-yellow-300 dark:border-yellow-800" />
+                        <span className="text-muted-foreground">감정 자극</span>
+                      </div>
+                    </div>
+
+                    {/* Highlighted text display */}
+                    <div className="bg-muted/30 rounded-lg p-4 text-sm border border-border">
+                      <HighlightedText text={inputText} highlights={result.highlights} />
+                    </div>
+
+                    <p className="text-xs text-muted-foreground">
+                      색상으로 강조된 단어는 가짜 뉴스의 특징적인 표현입니다. 이러한 표현이 많을수록 신뢰도가 낮습니다.
+                    </p>
+                  </div>
+                </Card>
+
                 {/* 신뢰도 점수 */}
                 <Card className="p-6">
                   <div className="space-y-4">
