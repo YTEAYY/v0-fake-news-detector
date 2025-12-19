@@ -10,14 +10,32 @@ v0.app을 활용해 UI를 구성하고, Vercel을 통해 배포한 프로젝트�
 ## 주요 기능
 - 뉴스 텍스트 입력 기능
 - 가짜 뉴스 여부 판별
-- 결과 화면 시각화
+- 판별 결과 화면 출력
 - 웹 기반 서비스 제공
 
 ## 사용 기술
 - Frontend: React, TypeScript  
 - Styling: Tailwind CSS  
 - Platform: v0.app  
-- Deployment: Vercel  
+- Deployment: Vercel
+
+## 배운 점
+v0.app을 활용하여 빠르게 웹 애플리케이션을 제작하는 방법을 배웠고,
+Vercel 배포 과정을 통해 웹 서비스 배포 흐름을 이해하게 되었습니다.
+
+## 프로젝트 구조
+```text
+project-root/
+├─ src/
+│  ├─ components/        # 화면을 구성하는 공통 컴포넌트
+│  ├─ pages/             # 페이지 단위 컴포넌트
+│  ├─ assets/            # 이미지, 아이콘 등 정적 파일
+│  ├─ App.tsx            # 전체 앱의 루트 컴포넌트
+│  └─ main.tsx           # 애플리케이션 진입 파일
+├─ public/               # 정적 리소스
+├─ package.json          # 프로젝트 정보 및 의존성
+├─ tsconfig.json         # TypeScript 설정 파일
+└─ README.md             # 프로젝트 설명 문서
 
 ## 실행 방법
 ```bash
