@@ -17,7 +17,7 @@ v0.app을 활용해 UI를 구성하고, Vercel을 통해 배포한 프로젝트�
 - Frontend: React, TypeScript  
 - Styling: Tailwind CSS  
 - Platform: v0.app  
-- Deployment: Vercel  
+- Deployment: Vercel
 
 ## 프로젝트 구조
 ```text
@@ -32,8 +32,10 @@ project-root/
 ├─ package.json          # 프로젝트 정보 및 의존성
 ├─ tsconfig.json         # TypeScript 설정 파일
 └─ README.md             # 프로젝트 설명 문서
-
+```
 배운 점
 React 프로젝트의 기본 폴더 구조와 역할을 이해하게 되었다.
 컴포넌트와 페이지를 분리하여 관리하면서 코드 가독성과 유지보수성이 향상됨을 느꼈다.
 v0.app과 Vercel을 사용해 웹 애플리케이션 배포 과정을 직접 경험할 수 있었다.
+
+
