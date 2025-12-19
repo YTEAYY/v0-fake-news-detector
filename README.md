@@ -1,30 +1,25 @@
-# Fake news detector
+# 📚 가짜 뉴스 판별 시스템
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+## 프로젝트 소개
+온라인에서 유통되는 뉴스 내용을 분석하여 가짜 뉴스 여부를 판별하는 웹 애플리케이션입니다.  
+v0.app을 활용해 UI를 구성하고, Vercel을 통해 배포한 프로젝트입니다.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/yteayys-projects/v0-fake-news-detector)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/tnNwyllywuA)
+## 개발 기간
+2024.11 ~ 2024.12 (2개월)
 
-## Overview
+## 주요 기능
+- 뉴스 텍스트 입력 기능
+- 가짜 뉴스 여부 판별
+- 결과 화면 시각화
+- 웹 기반 서비스 제공
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## 사용 기술
+- Frontend: React, TypeScript  
+- Styling: Tailwind CSS  
+- Platform: v0.app  
+- Deployment: Vercel  
 
-## Deployment
-
-Your project is live at:
-
-**[https://vercel.com/yteayys-projects/v0-fake-news-detector](https://vercel.com/yteayys-projects/v0-fake-news-detector)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/tnNwyllywuA](https://v0.app/chat/tnNwyllywuA)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## 실행 방법
+```bash
+npm install
+npm run dev
